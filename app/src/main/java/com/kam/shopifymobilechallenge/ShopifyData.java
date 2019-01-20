@@ -50,7 +50,7 @@ public class ShopifyData extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         myHolder.myTitle.setText(current.myTitle);
         myHolder.amountLeft.setText("Amount: " + current.amountLeft);
 
-
+        //TODO: Add proper ImageViews and change/fix api parser
         // load image into imageview using glide
         Glide.with(context).load("http://192.168.1.7/test/images/" + current.srcImage)
                 .placeholder(R.drawable.ic_img_error)
@@ -77,7 +77,7 @@ public class ShopifyData extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public MyHolder(View itemView) {
             super(itemView);
             myTitle= (TextView) itemView.findViewById(R.id.textFishName);
-            myImg= (ImageView) itemView.findViewById(R.id.ivFish);
+            myImg= (ImageView) itemView.findViewById(R.id.myImg);
             myDesc = (TextView) itemView.findViewById(R.id.textType);
             amountLeft = (TextView) itemView.findViewById(R.id.textPrice);
         }
