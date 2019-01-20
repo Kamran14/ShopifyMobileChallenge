@@ -23,7 +23,7 @@
     <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
         <item name="colorAccent">@color/shopifyDark</item>
         <item name="android:textColorPrimary">@color/shopifyDark</item>
-        <item name="android:background">@color/shopifyGreen</item>
+        <item name="android:background">@color/oil</item>
     </style>
 
 </resources>

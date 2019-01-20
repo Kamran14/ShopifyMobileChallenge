@@ -42,8 +42,8 @@
         android:id="@+id/textSize"
         android:layout_marginLeft="5dp"
         android:layout_below="@id/textFishName"
-        android:layout_toRightOf="@id/ivFish"
-        android:layout_toEndOf="@id/ivFish"
+        android:layout_toRightOf="@id/myImg"
+        android:layout_toEndOf="@id/myImg"
         android:textColor="#666"/>
 
     <TextView
@@ -54,7 +54,7 @@
         android:id="@+id/textType"
         android:layout_marginLeft="5dp"
         android:layout_below="@id/textSize"
-        android:layout_toRightOf="@id/ivFish"
+        android:layout_toRightOf="@id/myImg"
         android:textColor="#666"/>
 
 </RelativeLayout>
