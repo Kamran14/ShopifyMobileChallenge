@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
     OkHttpClient client = null;
     private RecyclerView recyclerView;
     private ShopifyData shopifyData;
-    public static final int CONNECTION_TIMEOUT = 10000;
-    public static final int READ_TIMEOUT = 15000;
 
 
     @Override
@@ -57,11 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            JsonReader jsonReader;
             try {
 
-                // Enter URL address where your json file resides
-                // Even you can make call to php file which returns json data
                 Request request = new Request.Builder()
                         .url(shopifyUrl)
                         .build();
@@ -91,15 +86,16 @@ public class MainActivity extends AppCompatActivity {
                 for(int i = 0; i < jsonArray.length(); i++){
                     JSONObject json_data = jsonArray.getJSONObject(i);
                     myData shopData = new myData();
-                    shopData.srcImage = json_data.getString("image").replaceAll("\\\\", "/");
+                    shopData.srcImage = json_data.getString("image").substring(85, json_data
+                            .getString("image").length() - 2).replaceAll("\\\\", "");
                     shopData.myTitle = json_data.getString("title");
                     shopData.amountLeft =  json_data.getInt("id");
                     shopData.myDesc = json_data.getString("body_html");
                     data.add(shopData);
                 }
 
-                // Setup and Handover data to recyclerview
-                recyclerView = (RecyclerView)findViewById(R.id.mRecycleView);
+                //RecyclerView setup
+                recyclerView = findViewById(R.id.mRecycleView);
                 shopifyData = new ShopifyData(MainActivity.this, data);
                 recyclerView.setAdapter(shopifyData);
                 recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -116,33 +112,3 @@ public class MainActivity extends AppCompatActivity {
 }
 
 
-/*protected void onPostExecute(String url) throws IOException {
-        List<myData> data = new ArrayList<>();
-
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        try {
-            Response response = client.newCall(request).execute();
-            String jsonData = response.body().string();
-            JSONObject Jobject = new JSONObject(jsonData);
-            JSONArray Jarray = Jobject.getJSONArray("custom_collections");
-
-            for (int i = 0; i < Jarray.length(); i++) {
-                JSONObject object = Jarray.getJSONObject(i);
-                Log.d("GOTCALL", object.toString());
-            }
-
-        }catch(Exception e) {
-
-            e.printStackTrace();
-        }
-        shopifyData = (RecyclerView)findViewById(R.id.mRecycleView);
-        LinearLayoutManager mLayout = new LinearLayoutManager(this);
-        mData = new ShopifyData(this, data);
-        shopifyData.setAdapter(mData);
-        shopifyData.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
-
-    }*/

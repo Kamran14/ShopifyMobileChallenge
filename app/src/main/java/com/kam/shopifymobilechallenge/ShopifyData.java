@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,10 +49,12 @@ public class ShopifyData extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         MyHolder myHolder = (MyHolder) holder;
         myData current = data.get(position);
         myHolder.myTitle.setText(current.myTitle);
-        myHolder.amountLeft.setText("Amount: " + current.amountLeft);
+        myHolder.amountLeft.setText("Left:" + (current.amountLeft / 100000));
+        myHolder.myDesc.setText(current.myDesc);
 
         //TODO: Add proper ImageViews and change/fix api parser
         // load image into imageview using glide
+        Log.e("KAME", current.srcImage);
         Glide.with(context).load(current.srcImage)
                 .placeholder(R.drawable.err)
                 .error(R.drawable.err)
@@ -76,10 +79,10 @@ public class ShopifyData extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         // create constructor to get widget reference
         public MyHolder(View itemView) {
             super(itemView);
-            myTitle = (TextView) itemView.findViewById(R.id.textFishName);
-            myImg = (ImageView) itemView.findViewById(R.id.myImg);
-            myDesc = (TextView) itemView.findViewById(R.id.textType);
-            amountLeft = (TextView) itemView.findViewById(R.id.textPrice);
+            myTitle = itemView.findViewById(R.id.textFishName);
+            myImg = itemView.findViewById(R.id.myImg);
+            myDesc = itemView.findViewById(R.id.textType);
+            amountLeft = itemView.findViewById(R.id.textPrice);
         }
 
     }
