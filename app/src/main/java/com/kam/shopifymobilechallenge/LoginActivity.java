@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity  {
     public void login() {
         Log.d(TAG, "Login");
 
-        _loginButton.setEnabled(false);
+       // _loginButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
@@ -92,7 +92,6 @@ public class LoginActivity extends AppCompatActivity  {
     public void onSuccess(){
         Log.d(TAG,"Starting new Activity");
         Intent newScreen = new Intent(this, MainActivity.class);
-        Toast.makeText(this, "Kam is amazing", Toast.LENGTH_SHORT).show();
         startActivity(newScreen);
     }
 
